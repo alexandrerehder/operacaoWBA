@@ -47,12 +47,26 @@ public class OperacaoService {
     operacao.setValorTotal(operacao.getListaDeTitulos().stream().map(Titulo::getValor).reduce(BigDecimal::add).get());
     return mapper.toDTO(operacaoRepository.save(operacao));
   }
+   
+  @Transactional
+  public OperacaoDTO alteraOperacao(OperacaoDTO dto) {
+	  Operacao operacao = operacaoRepository.findById(dto.getId());
+	  operacao.setDataOperacao(dto.getDataOperacao());
+	  
+	  List<Titulo> lista = operacao.getListaDeTitulos();
+	    for (Titulo obj : lista) {
+	      long calcPrazo = ChronoUnit.DAYS.between(operacao.getDataOperacao(), obj.getDataVencimento());
+	      obj.setPrazo((int) calcPrazo);
+	    }
+	  
+	  return mapper.toDTO(operacaoRepository.save(operacao));
+  }
+   
+  @Transactional
+  public void deleteOperacao(Integer id) {
+    operacaoRepository.deleteById(id);
+  }
 
-//  @Transactional
-//  public void deleteOperacao(Integer id) {
-//    operacaoRepository.deleteById(id);
-//  }
-//
 //  @Transactional
 //  public void calculaNovosPrazos(Integer id, LocalDate novaDataOperacao) {
 //    Operacao operacao = getOperacaoById(id);
