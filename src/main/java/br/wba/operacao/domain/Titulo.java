@@ -31,12 +31,6 @@ public class Titulo implements Serializable {
   @ManyToOne
   @JoinColumn(name = "operacao_id")
   private Operacao operacao;
-//
-//  public Titulo() {
-//    this.setDataVencimento(dataVencimento);
-//    this.setValor(valor);
-//    this.setPrazo(prazo);
-//  }
 
 	public LocalDate getDataVencimento() {
 		return dataVencimento;

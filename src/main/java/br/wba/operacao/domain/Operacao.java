@@ -18,6 +18,7 @@ public class Operacao implements Serializable {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
   private BigDecimal valorTotal;
+  private BigDecimal valorMulta;
   private LocalDate dataOperacao;
 
   @OneToMany(mappedBy = "operacao", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -53,5 +54,13 @@ public class Operacao implements Serializable {
 	
 	public void setListaDeTitulos(List<Titulo> listaDeTitulos) {
 		this.listaDeTitulos = listaDeTitulos;
+	}
+
+	public BigDecimal getValorMulta() {
+		return valorMulta;
+	}
+
+	public void setValorMulta(BigDecimal valorMulta) {
+		this.valorMulta = valorMulta;
 	}
 }

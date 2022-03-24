@@ -35,6 +35,7 @@ public class OperacaoService {
   @Transactional
   public OperacaoDTO createOperacao(OperacaoDTO dto) {
     Operacao operacao = mapper.toEntity(dto);
+  
     LocalDate dataOperacao = operacao.getDataOperacao();
     List<Titulo> lista = operacao.getListaDeTitulos();
 
@@ -43,9 +44,11 @@ public class OperacaoService {
       long calcPrazo = ChronoUnit.DAYS.between(dataOperacao, titulo.getDataVencimento());
       titulo.setPrazo((int) calcPrazo);
     }
-
-    operacao.setValorTotal(operacao.getListaDeTitulos().stream().map(Titulo::getValor).reduce(BigDecimal::add).get());
-    return mapper.toDTO(operacaoRepository.save(operacao));
+    
+    BigDecimal valorTitulos = (operacao.getListaDeTitulos().stream().map(Titulo::getValor).reduce(BigDecimal::add).get());
+    valorTitulos = valorTitulos.add(operacao.getValorMulta());
+    operacao.setValorTotal(valorTitulos);
+ 	  return mapper.toDTO(operacaoRepository.save(operacao));
   }
    
   @Transactional
@@ -66,22 +69,4 @@ public class OperacaoService {
   public void deleteOperacao(Integer id) {
     operacaoRepository.deleteById(id);
   }
-
-//  @Transactional
-//  public void calculaNovosPrazos(Integer id, LocalDate novaDataOperacao) {
-//    Operacao operacao = getOperacaoById(id);
-//    List<Titulo> lista = operacao.getListaDeTitulos();
-//    for (Titulo obj : lista) {
-//      long calcPrazo = ChronoUnit.DAYS.between(novaDataOperacao, obj.getDataVencimento());
-//      obj.setPrazo((int) calcPrazo);
-//    }
-//  }
-//
-//  @Transactional
-//  public void calculaNovoValorTotal(Titulo obj, Operacao operacao) {
-//    BigDecimal valorTotal = BigDecimal.ZERO;
-//    valorTotal = operacao.getValorTotal();
-//    valorTotal = valorTotal.add(obj.getValor());
-//    operacao.setValorTotal(valorTotal);
-//  }
 }

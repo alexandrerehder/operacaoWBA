@@ -14,6 +14,7 @@ public class OperacaoDTO implements Serializable {
 
   private Integer id;
   private BigDecimal valorTotal;
+  private BigDecimal multa;
   private LocalDate dataOperacao;
   private List<TituloDTO> listaDeTitulos;
   
@@ -41,6 +42,10 @@ public List<TituloDTO> getListaDeTitulos() {
 public void setListaDeTitulos(List<TituloDTO> listaDeTitulos) {
 	this.listaDeTitulos = listaDeTitulos;
 }
-
-
+public BigDecimal getMulta() {
+	return multa;
+}
+public void setMulta(BigDecimal multa) {
+	this.multa = multa;
+}
 }
