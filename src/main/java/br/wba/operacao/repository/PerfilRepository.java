@@ -1,5 +1,6 @@
 package br.wba.operacao.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +14,7 @@ import br.wba.operacao.domain.Perfil;
 public interface PerfilRepository extends JpaRepository<Perfil, UUID> {
 	
 	@Query("select p from Perfil p where p.id = :id")
-    Perfil findById(@Param("id") Integer id);
+    Optional<Perfil> findById(@Param("id") Integer id);
 	
 	void deleteById(Integer id);
 }

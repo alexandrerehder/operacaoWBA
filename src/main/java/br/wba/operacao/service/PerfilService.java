@@ -1,6 +1,7 @@
 package br.wba.operacao.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -9,10 +10,9 @@ import org.springframework.stereotype.Service;
 
 import br.wba.operacao.domain.Perfil;
 import br.wba.operacao.dto.PerfilDTO;
+import br.wba.operacao.exceptionhandler.DataNotFoundException;
 import br.wba.operacao.mapper.PerfilTransformMapper;
 import br.wba.operacao.repository.PerfilRepository;
-
-
 
 @Service
 public class PerfilService {
@@ -29,8 +29,9 @@ public class PerfilService {
 	}
 	
 	public Perfil buscarPerfilPorId(Integer id) {
-	    return perfilRepository.findById(id);
-	  }
+		Optional<Perfil> perfil = perfilRepository.findById(id);
+	    return perfil.orElseThrow(() -> new DataNotFoundException());
+	}
 
 	@Transactional
 	public PerfilDTO criarUsuario(PerfilDTO dto) {
