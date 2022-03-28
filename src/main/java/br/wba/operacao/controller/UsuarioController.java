@@ -1,5 +1,8 @@
 package br.wba.operacao.controller;
 
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,14 +30,20 @@ public class UsuarioController {
 		return new ResponseEntity<>(usuarioService.buscarListaUsuarios(), HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/buscar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
+        return new ResponseEntity<>(usuarioService.buscarUsuariolPorId(id), HttpStatus.OK);
+    }
+	
 	@PostMapping(value = "/cadastrar", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> cadastrarUsuario(@RequestBody UsuarioDTO dto) {
+    public ResponseEntity<?> cadastrarUsuario(@Valid @RequestBody UsuarioDTO dto) throws Exception {
     	return new ResponseEntity<>(usuarioService.criarUsuario(dto), HttpStatus.CREATED);	
     }
 	
 	@DeleteMapping(value = "/deletar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> removerrUsuario(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> removerUsuario(@PathVariable("id") Integer id) {
 		usuarioService.deletarUsuario(id);
     	return new ResponseEntity<>(HttpStatus.OK);
     } 
 }
+

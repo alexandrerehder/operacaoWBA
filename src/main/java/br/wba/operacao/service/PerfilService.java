@@ -14,6 +14,7 @@ import br.wba.operacao.exceptionhandler.DataNotFoundException;
 import br.wba.operacao.mapper.PerfilTransformMapper;
 import br.wba.operacao.repository.PerfilRepository;
 
+
 @Service
 public class PerfilService {
 	
@@ -28,9 +29,9 @@ public class PerfilService {
 		return mapper.toListDTO(perfilRepository.findAll());
 	}
 	
-	public Perfil buscarPerfilPorId(Integer id) {
+	public PerfilDTO buscarPerfilPorId(Integer id) {
 		Optional<Perfil> perfil = perfilRepository.findById(id);
-	    return perfil.orElseThrow(() -> new DataNotFoundException());
+	    return mapper.toDTO(perfil.orElseThrow(() -> new DataNotFoundException()));
 	}
 
 	@Transactional
@@ -38,4 +39,9 @@ public class PerfilService {
 		Perfil perfil = mapper.toEntity(dto);
 		return mapper.toDTO(perfilRepository.save(perfil));
 	}
+	
+	 @Transactional
+	 public void deletarPerfil(Integer id) {
+		  perfilRepository.deleteById(id);
+	 }
 }

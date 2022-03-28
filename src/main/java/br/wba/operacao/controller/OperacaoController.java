@@ -41,7 +41,7 @@ public class OperacaoController {
     }
 
     @DeleteMapping(value = "/deletar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> deletarOperacao(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> deletarOperacao(@PathVariable("id") Integer id) {
     	operacaoService.deleteOperacao(id);
     	return new ResponseEntity<>(HttpStatus.OK);
     } 
