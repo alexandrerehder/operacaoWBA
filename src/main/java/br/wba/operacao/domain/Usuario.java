@@ -13,7 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -27,11 +26,8 @@ public class Usuario implements Serializable {
 	  @Id
 	  @GeneratedValue(strategy = GenerationType.AUTO)
 	  private Integer id;
-	  @NotNull
 	  private String nome;
-	  @NotNull
 	  private String username;
-	  @NotNull
 	  private String senha;
 	  
 	  @ManyToMany(cascade = CascadeType.MERGE)

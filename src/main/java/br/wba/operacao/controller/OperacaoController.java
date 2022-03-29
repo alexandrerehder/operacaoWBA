@@ -20,7 +20,7 @@ public class OperacaoController {
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(operacaoService.getListOperacoes(), HttpStatus.OK);
     }
-
+    
     @GetMapping(value = "/buscar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> buscarOperacao(@PathVariable("id") Integer id) {
         OperacaoDTO dto = operacaoService.getOperacaoById(id);

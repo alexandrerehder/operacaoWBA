@@ -40,5 +40,5 @@ public class UsuarioService {
 	@Transactional
 	public void deletarUsuario(Integer id) {
 		usuarioRepository.deleteById(id);
-	  }
+	}
 }

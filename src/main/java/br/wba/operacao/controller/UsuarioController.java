@@ -36,7 +36,7 @@ public class UsuarioController {
     }
 	
 	@PostMapping(value = "/cadastrar", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> cadastrarUsuario(@Valid @RequestBody UsuarioDTO dto) throws Exception {
+    public ResponseEntity<?> cadastrarUsuario(@RequestBody @Valid UsuarioDTO dto) throws Exception {
     	return new ResponseEntity<>(usuarioService.criarUsuario(dto), HttpStatus.CREATED);	
     }
 	

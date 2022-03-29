@@ -24,7 +24,6 @@ public class OperacaoService {
   }
 
   public OperacaoDTO getOperacaoById(Integer id) {
-	  
     return mapper.toDTO(operacaoRepository.findById(id));
   }
 
