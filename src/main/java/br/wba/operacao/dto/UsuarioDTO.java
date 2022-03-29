@@ -14,6 +14,7 @@ public class UsuarioDTO implements Serializable {
 	private Integer id;
 	private String nome;
 	private String username;
+	private String senha;
 	private List<Perfil> perfis;
 	
 	public Integer getId() {
@@ -39,5 +40,11 @@ public class UsuarioDTO implements Serializable {
 	}
 	public void setPerfis(List<Perfil> perfis) {
 		this.perfis = perfis;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 }

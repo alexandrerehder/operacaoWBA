@@ -34,7 +34,7 @@ public class PerfilController {
 	
 	@PostMapping(value = "/cadastrar", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> cadastrarPerfil(@RequestBody PerfilDTO dto) {
-    	return new ResponseEntity<>(perfilService.criarUsuario(dto), HttpStatus.CREATED);	
+    	return new ResponseEntity<>(perfilService.criarPerfil(dto), HttpStatus.CREATED);	
     }
 	
 	@DeleteMapping(value = "/deletar/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

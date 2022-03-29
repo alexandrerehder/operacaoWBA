@@ -35,7 +35,7 @@ public class PerfilService {
 	}
 
 	@Transactional
-	public PerfilDTO criarUsuario(PerfilDTO dto) {
+	public PerfilDTO criarPerfil(PerfilDTO dto) {
 		Perfil perfil = mapper.toEntity(dto);
 		return mapper.toDTO(perfilRepository.save(perfil));
 	}

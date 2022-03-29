@@ -31,6 +31,8 @@ public class Usuario implements Serializable {
 	  private String nome;
 	  @NotNull
 	  private String username;
+	  @NotNull
+	  private String senha;
 	  
 	  @ManyToMany(cascade = CascadeType.MERGE)
 	  @JoinTable(
@@ -66,4 +68,10 @@ public class Usuario implements Serializable {
 	  public void setPerfis(List<Perfil> perfis) {
 		  this.perfis = perfis;
 	  }
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 }

@@ -24,15 +24,14 @@ public class UsuarioService {
 	UsuarioTransformMapper mapper;
 	
 	@Transactional
-	public List<Usuario> buscarListaUsuarios() {
-		return usuarioRepository.findAll();
+	public List<UsuarioDTO> buscarListaUsuarios() {
+		return mapper.toListDTO(usuarioRepository.findAll());
 	}
 	
 	public UsuarioDTO buscarUsuariolPorId(Integer id) {
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 	    return mapper.toDTO(usuario.orElseThrow(() -> new DataNotFoundException()));
 	}
-
 	
 	@Transactional
 	public UsuarioDTO criarUsuario(UsuarioDTO dto) {
