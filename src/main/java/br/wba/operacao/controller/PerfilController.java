@@ -1,5 +1,7 @@
 package br.wba.operacao.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,7 +35,7 @@ public class PerfilController {
     }
 	
 	@PostMapping(value = "/cadastrar", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> cadastrarPerfil(@RequestBody PerfilDTO dto) {
+    public ResponseEntity<?> cadastrarPerfil(@RequestBody @Valid PerfilDTO dto) {
     	return new ResponseEntity<>(perfilService.criarPerfil(dto), HttpStatus.CREATED);	
     }
 	
