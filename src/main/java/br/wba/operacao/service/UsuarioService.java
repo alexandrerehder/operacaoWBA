@@ -23,7 +23,6 @@ public class UsuarioService {
 	@Autowired
 	UsuarioTransformMapper mapper;
 	
-	@Transactional
 	public List<UsuarioDTO> buscarListaUsuarios() {
 		return mapper.toListDTO(usuarioRepository.findAll());
 	}
@@ -33,7 +32,6 @@ public class UsuarioService {
 	    return mapper.toDTO(usuario.orElseThrow(() -> new DataNotFoundException()));
 	}
 	
-	@Transactional
 	public UsuarioDTO criarUsuario(UsuarioDTO dto) {
 		Usuario usuario = mapper.toEntity(dto);
 		return mapper.toDTO(usuarioRepository.save(usuario));

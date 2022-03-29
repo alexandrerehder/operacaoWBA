@@ -24,7 +24,6 @@ public class PerfilService {
 	@Autowired
 	PerfilTransformMapper mapper;
 	
-	@Transactional
 	public List<PerfilDTO> buscarListaPerfis() {
 		return mapper.toListDTO(perfilRepository.findAll());
 	}
@@ -34,7 +33,6 @@ public class PerfilService {
 	    return mapper.toDTO(perfil.orElseThrow(() -> new DataNotFoundException()));
 	}
 
-	@Transactional
 	public PerfilDTO criarPerfil(PerfilDTO dto) {
 		Perfil perfil = mapper.toEntity(dto);
 		return mapper.toDTO(perfilRepository.save(perfil));
