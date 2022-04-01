@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -30,6 +31,9 @@ public class Usuario implements Serializable {
 	  private String username;
 	  private String senha;
 	  
+	  @OneToOne(cascade = CascadeType.ALL)
+	  private ConfiguracaoUsuario configuracaoUsuario;
+	  
 	  @ManyToMany(cascade = CascadeType.MERGE)
 	  @JoinTable(
 			  name="PerfilUsuarios",
@@ -39,35 +43,5 @@ public class Usuario implements Serializable {
 			  ) 
 	  private List<Perfil> perfis; 
 	  
-	  public Integer getId() {
-		  return id;
-	  }
-	  public void setId(Integer id) {
-		  this.id = id;
-	  }
-	  public String getNome() {
-		  return nome;
-	  }
-	  public void setNome(String nome) {
-		  this.nome = nome;
-	  }
-	  public String getUsername() {
-		  return username;
-	  }
-	  public void setUsername(String username) {
-		  this.username = username;
-	  }
-	  public List<Perfil> getPerfis() {
-		  return perfis;
-	  }
 
-	  public void setPerfis(List<Perfil> perfis) {
-		  this.perfis = perfis;
-	  }
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
 }

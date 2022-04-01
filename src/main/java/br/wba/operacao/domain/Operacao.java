@@ -21,6 +21,9 @@ public class Operacao implements Serializable {
   private BigDecimal valorTotal;
   private BigDecimal valorMulta;
   private LocalDate dataOperacao;
+  
+  @ManyToOne
+  private Usuario usuario;
 
   @OneToMany(mappedBy = "operacao", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Titulo> listaDeTitulos;

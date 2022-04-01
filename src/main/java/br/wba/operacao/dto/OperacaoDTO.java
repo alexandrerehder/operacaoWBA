@@ -23,34 +23,7 @@ public class OperacaoDTO implements Serializable {
   @NotNull
   private List<TituloDTO> listaDeTitulos;
   
-public Integer getId() {
-	return id;
-}
-public void setId(Integer id) {
-	this.id = id;
-}
-public BigDecimal getValorTotal() {
-	return valorTotal;
-}
-public void setValorTotal(BigDecimal valorTotal) {
-	this.valorTotal = valorTotal;
-}
-public LocalDate getDataOperacao() {
-	return dataOperacao;
-}
-public void setDataOperacao(LocalDate dataOperacao) {
-	this.dataOperacao = dataOperacao;
-}
-public List<TituloDTO> getListaDeTitulos() {
-	return listaDeTitulos;
-}
-public void setListaDeTitulos(List<TituloDTO> listaDeTitulos) {
-	this.listaDeTitulos = listaDeTitulos;
-}
-public BigDecimal getMulta() {
-	return multa;
-}
-public void setMulta(BigDecimal multa) {
-	this.multa = multa;
-}
+  private UsuarioDTO usuario;
+  
+
 }

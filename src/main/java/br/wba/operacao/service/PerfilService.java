@@ -38,8 +38,8 @@ public class PerfilService {
 		return mapper.toDTO(perfilRepository.save(perfil));
 	}
 	
-	 @Transactional
-	 public void deletarPerfil(Integer id) {
-		  perfilRepository.deleteById(id);
-	 }
+	@Transactional
+	public void deletarPerfil(Integer id) {
+		perfilRepository.deleteById(id);
+	}
 }

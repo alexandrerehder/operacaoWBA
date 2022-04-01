@@ -1,20 +1,27 @@
 package br.wba.operacao.service;
 
-import br.wba.operacao.domain.Operacao;
-import br.wba.operacao.dto.OperacaoDTO;
-import br.wba.operacao.mapper.OperacaoTransformMapper;
-import br.wba.operacao.repository.OperacaoRepository;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.List;
+import br.wba.operacao.domain.Operacao;
+import br.wba.operacao.domain.Usuario;
+import br.wba.operacao.dto.OperacaoDTO;
+import br.wba.operacao.mapper.OperacaoTransformMapper;
+import br.wba.operacao.repository.OperacaoRepository;
+import br.wba.operacao.repository.UsuarioRepository;
 
 @Service
 public class OperacaoService {
 
   @Autowired
   private OperacaoRepository operacaoRepository;
+  
+  @Autowired
+  private UsuarioRepository usuarioRepository;
 
   @Autowired
   OperacaoTransformMapper mapper;
@@ -29,6 +36,8 @@ public class OperacaoService {
 
   public OperacaoDTO createOperacao(OperacaoDTO dto) {
     Operacao operacao = mapper.toEntity(dto);
+    Usuario usuario = usuarioRepository.findById(dto.getUsuario().getId()).get();
+    operacao.setUsuario(usuario);
  	  return mapper.toDTO(operacaoRepository.save(operacao));
   }
    
